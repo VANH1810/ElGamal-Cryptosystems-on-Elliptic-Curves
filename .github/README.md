@@ -1,3 +1,4 @@
+<div id="readme-top"></div>
 # ElGamal Cryptosystems on Elliptic Curves
 A Crytosystem redesigned by [Trần Quốc Việt Anh](https://github.com/VANH1810)
 
@@ -37,7 +38,7 @@ ElGamal Cryptosystems on Elliptic Curves
 
 This is an easy-to-use API implementation of Elgamal Encryption and Decryption using Elliptic Curve Cryptography, implemented purely in Python. 
 
-You can create and use your own Elliptic curve using the [BuildECC](BuildECC.py)
+You can create and use your own Elliptic curve using the [BuildECC](../BuildECC.py)
 
 ### Built With
 
