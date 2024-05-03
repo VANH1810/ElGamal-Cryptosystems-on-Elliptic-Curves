@@ -12,7 +12,7 @@ A Crytosystem redesigned by [Trần Quốc Việt Anh](https://github.com/VANH18
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
-    <li><a href="#2-structures">Structures</a></li>
+    <li><a href="#2-parameters">Parameters</a></li>
     <li>
       <a href="#3-getting-started">Getting Started</a>
       <ul>
@@ -33,27 +33,25 @@ A Crytosystem redesigned by [Trần Quốc Việt Anh](https://github.com/VANH18
 <!-- GENAERAL INFORMATION -->
 ## 1. General Information
 
-Game Flappy Bird
+ElGamal Cryptosystems on Elliptic Curves
 
-You can see the demo here:
+This is an easy-to-use API implementation of Elgamal Encryption and Decryption using Elliptic Curve Cryptography, implemented purely in Python. 
 
-<p align="center">A demo run of this game </p>
+You can create and use your own Elliptic curve using the [BuildECC](https://github.com/VANH1810/ElGamal-Cryptosystems-on-Elliptic-Curves/blob/main/BuildECC.py)
 
 ### Built With
 
-[Python](https://www.python.org/) and [PyGame](https://www.pygame.org/download.shtml)
+[Python](https://www.python.org/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## 2. Structures
+## 2. Parameters
+Elliptic curve I used:  y^2 = x^3 + 872338 * x + 842444
+Over Zp, p = 937151
+GenPoint: (16213, 331227)
+Number of points in the field [Order of G]: 937537
+Private Key: 562997
 
-* Windows Powershell | Linux
-
-Run tree to show the structure of the repository
-
-```bash
-tree
-```
 ## 3. Getting Started
 
 ### Prerequisites
@@ -65,34 +63,37 @@ This repository currently supports Window.
   ```bash
     python get-pip.py
     ```
-* Install Pygame
-  ``` bash
-    pip install pygame
-    ```
-* You can see "How to install Pygame on Windows" in [Pygame](https://www.geeksforgeeks.org/how-to-install-pygame-in-windows/)
 
 ### Installation
 1. Clone the repository to local computer
 
   ```bash
-   git clone https://github.com/VANH1810/Flappy-Bird.git
+   git clone https://github.com/VANH1810/ElGamal-Cryptosystems-on-Elliptic-Curves.git
   ```
 2. Check the Python version
   ```bash
    py --version
   ```
-3. Run game
+3. Encryption and Decryption
   ```bash
-   py flappy.py
+   py main.py
   ```
 <p align="right">(<a href="#readme-top">Back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
 ## 4. Usage
-Run server
+* To Encryption and Decryption
   ``` ssh
-   py flappy.py
-   ```
+   py main.py
+    ```
+* To Build a new Elliptic Curve
+  ``` ssh
+   py BuildECC.py
+    ```
+* To Generate a Prime
+  ``` ssh
+    py GeneratePrime.py
+    ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
@@ -122,11 +123,10 @@ My project is released under the [MIT License](LICENSE.md). This means you're fr
 
 <!-- REFERENCES -->
 ## 9. References
-Assets: 
-* [Some images](https://github.com/samuelcust/flappy-bird-assets)
-
-Font:
-* [Lobster](https://fonts.google.com/specimen/Lobster)
+* [Stinson Paterson_ Cryptography Theory And Practice - CRC Press (2019)] (https://www.taylorfrancis.com/books/mono/10.1201/9781315282497/cryptography-douglas-robert-stinson-maura-paterson)
+* [Elliptic Curve Digital Signature Algorithm] (https://learnmeabitcoin.com/technical/cryptography/elliptic-curve/ecdsa/)
+* [# ElGamal Cryptosystems on Koblitz curve secp256k1] (https://github.com/Yash0day/ElgamalEncryption-using-ECC)
+* [Tinyec Python Libarary] (https://pypi.org/project/tinyec/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

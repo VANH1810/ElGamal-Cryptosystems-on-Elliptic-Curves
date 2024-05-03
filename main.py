@@ -19,7 +19,7 @@ bits = 20
 privKey = 562997
 
 #size of each block
-block_size = 32
+block_size = 2
 
 #Initialize the ECC
 field = ECC_Class.SubGroup(Pcurve, GPoint, N, 1)
