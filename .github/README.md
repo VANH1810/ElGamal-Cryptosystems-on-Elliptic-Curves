@@ -37,7 +37,7 @@ ElGamal Cryptosystems on Elliptic Curves
 
 This is an easy-to-use API implementation of Elgamal Encryption and Decryption using Elliptic Curve Cryptography, implemented purely in Python. 
 
-You can create and use your own Elliptic curve using the [BuildECC](https://github.com/VANH1810/ElGamal-Cryptosystems-on-Elliptic-Curves/blob/main/BuildECC.py)
+You can create and use your own Elliptic curve using the [BuildECC](BuildECC.py)
 
 ### Built With
 
@@ -59,11 +59,6 @@ Private Key: 562997
 This repository currently supports Window.
 * You have to install Python 3.10.0 or higher. You should install Python in [Python](https://www.python.org/downloads/)
 
-* After that, you have to install PIP
-  ```bash
-    python get-pip.py
-    ```
-
 ### Installation
 1. Clone the repository to local computer
 
@@ -73,10 +68,6 @@ This repository currently supports Window.
 2. Check the Python version
   ```bash
    py --version
-  ```
-3. Encryption and Decryption
-  ```bash
-   py main.py
   ```
 <p align="right">(<a href="#readme-top">Back to top</a>)</p>
 
@@ -112,7 +103,7 @@ We want everyone who participates in Arcade Adventure to feel welcome and respec
 
 <!-- FUNDING -->
 ## 7. Funding
-Barcelona is currently self-funded and developed on a volunteer basis. If you're interested in supporting the project financially, we welcome your contributions. You can donate through our/my Open Collective page.
+My project is currently self-funded and developed on a volunteer basis. If you're interested in supporting the project financially, we welcome your contributions. You can donate through our/my Open Collective page.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->
@@ -123,10 +114,10 @@ My project is released under the [MIT License](LICENSE.md). This means you're fr
 
 <!-- REFERENCES -->
 ## 9. References
-* [Stinson Paterson_ Cryptography Theory And Practice - CRC Press (2019)] (https://www.taylorfrancis.com/books/mono/10.1201/9781315282497/cryptography-douglas-robert-stinson-maura-paterson)
-* [Elliptic Curve Digital Signature Algorithm] (https://learnmeabitcoin.com/technical/cryptography/elliptic-curve/ecdsa/)
-* [# ElGamal Cryptosystems on Koblitz curve secp256k1] (https://github.com/Yash0day/ElgamalEncryption-using-ECC)
-* [Tinyec Python Libarary] (https://pypi.org/project/tinyec/)
+* [Stinson Paterson_ Cryptography Theory And Practice - CRC Press (2019)](https://www.taylorfrancis.com/books/mono/10.1201/9781315282497/cryptography-douglas-robert-stinson-maura-paterson)
+* [Elliptic Curve Digital Signature Algorithm](https://learnmeabitcoin.com/technical/cryptography/elliptic-curve/ecdsa/)
+* [ElGamal Cryptosystems on Koblitz curve secp256k1](https://github.com/Yash0day/ElgamalEncryption-using-ECC)
+* [Tinyec Python Libarary](https://pypi.org/project/tinyec/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
