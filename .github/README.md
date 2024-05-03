@@ -46,11 +46,11 @@ You can create and use your own Elliptic curve using the [BuildECC](BuildECC.py)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 2. Parameters
-Elliptic curve I used:  y^2 = x^3 + 872338 * x + 842444
-Over Zp, p = 937151
-GenPoint: (16213, 331227)
-Number of points in the field [Order of G]: 937537
-Private Key: 562997
+* Elliptic curve I used:  y^2 = x^3 + 872338 * x + 842444
+* Over Zp, p = 937151
+* GenPoint: (16213, 331227)
+* Number of points in the field [Order of G]: 937537
+* Private Key: 562997
 
 ## 3. Getting Started
 
