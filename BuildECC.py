@@ -10,18 +10,13 @@ def sieve(upper):
 
     prime = [True] * upper  # Initialize the prime list
     prime[0] = prime[1] = False  # 0 and 1 are not prime numbers
-    result = []
 
     for p in range(2, int(upper**0.5) + 1):
         if prime[p]:
             for i in range(p*p, upper, p):
                 prime[i] = False
 
-    for p in range(2, upper):
-        if prime[p]:
-            result.append(p)
-
-    return result
+    return prime
 
 mapping = defaultdict(list)
 for i in range(Z):
@@ -51,7 +46,7 @@ while True:
         else:
             pass
     
-    if (cnt in primes):
+    if cnt < len(primes) and primes[cnt]:
         print("[Order of G]: ", cnt)
         break
         
