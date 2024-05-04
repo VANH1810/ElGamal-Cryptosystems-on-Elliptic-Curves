@@ -25,15 +25,15 @@ block_size = 2
 field = ECC_Class.SubGroup(Pcurve, GPoint, N, 1)
 curve = ECC_Class.Elliptic_Curves(Acurve, Bcurve, field, "Vanh_Curve")
 KeyPair = ECC_Class.KeyPair(curve, privKey)
-CrytoGraphy = ECC_Class.ECC(curve, KeyPair)
+Crytography = ECC_Class.ECC(curve, KeyPair)
 
 #Encryption
 message = input("Enter the message: ")
 key = input("Enter the key: ")
-cipher = CrytoGraphy.encrypt(int(key), message)
-#print("Cipher: ", cipher)
+cipher = Crytography.encrypt(int(key), message)
+print("Cipher: ", cipher)
 
 #Decryption
-plain = CrytoGraphy.decrypt(cipher)
+plain = Crytography.decrypt(cipher)
 print("Plain: ", plain)
 

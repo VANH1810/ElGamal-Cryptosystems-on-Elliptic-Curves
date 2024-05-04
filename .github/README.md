@@ -53,6 +53,7 @@ You can create and use your own Elliptic curve using the [BuildECC](../BuildECC.
 * GenPoint: (16213, 331227)
 * Number of points in the field [Order of G]: 937537
 * Private Key: 562997
+* Public Key: (295013, 729855)
 
 ## 3. Getting Started
 
@@ -99,7 +100,7 @@ Contributions are what make the open source community such an amazing place to l
 
 <!-- CODE OF CONDUCT -->
 ## 6. Code of Conduct
-We want everyone who participates in Arcade Adventure to feel welcome and respected. To ensure that happens, we've established a code of conduct that outlines our expectations for behavior. You can read the full text of the code of conduct in the [Code of Conduct](CODE_OF_CONDUCT.md) file.
+We want everyone who participates in my project to feel welcome and respected. To ensure that happens, we've established a code of conduct that outlines our expectations for behavior. You can read the full text of the code of conduct in the [Code of Conduct](CODE_OF_CONDUCT.md) file.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
