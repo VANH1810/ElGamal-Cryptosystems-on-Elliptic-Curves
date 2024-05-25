@@ -3,10 +3,6 @@ import random
 import math
 import warnings
 
-
-block_size = 2
-
-
 def gcd(a, b):
         while b != 0:
             a, b = b, a % b
@@ -157,18 +153,10 @@ class SubGroup:
         return self.__str__()
 
 class ECC:
-    def __init__(self, curve, keypair=None):
+    def __init__(self, curve, block_size, keypair=None):
         self.curve = curve
         self.keypair = keypair
-        self.can_decrypt = True
-        self.can_encrypt = True
-        if keypair is None:
-            self.can_sign = False
-            self.can_encrypt = False
-        elif keypair.priv is None:
-            self.can_decrypt = False
-        elif keypair.pub is None:
-            self.can_encrypt = False
+        self.block_size = block_size
 
     def __eq__(self, other):
         if not isinstance(other, ECC):
@@ -184,12 +172,10 @@ class ECC:
     def __repr__(self):
         return self.__str__()
 
-    def encrypt(self, k, message):
-        if not self.can_encrypt:
-            raise ValueError("No public key available for encryption")
-        else:
+    def encrypt(self, publicKey, k , message):
+       
             C1 = self.curve.g.ECmultiply(k)
-            C2 = self.keypair.pub.ECmultiply(k)
+            C2 = publicKey.ECmultiply(k)
             C2_str = f"{C2.x}{C2.y}"
             C2_hash = hashlib.sha256(C2_str.encode()).hexdigest()
             C2_int = int(C2_hash, 16) % self.curve.field.p
@@ -198,7 +184,7 @@ class ECC:
             message_bytes = message.encode()
 
             # Split plaintext into even blocks
-            blocks = [message_bytes[i:i+block_size] for i in range(0, len(message_bytes), block_size)]
+            blocks = [message_bytes[i:i+self.block_size] for i in range(0, len(message_bytes), self.block_size)]
             ciphertext_blocks = []
             for block in blocks:
                 block_int = int.from_bytes(block, byteorder='big')
@@ -208,25 +194,81 @@ class ECC:
 
             ciphertext_str = ' '.join(ciphertext_str_blocks)
             
+            with open('ECC - Encrypt and Decrypt/cipherText.txt', 'w') as file:
+                # Write C1 and ciphertext_str to the file
+                file.write(f"C1: {C1}\n")
+                file.write(f"ciphertext_str: {ciphertext_str}\n")
             return C1, ciphertext_str
         
-    def decrypt(self, cipher):
+    def decrypt(self, privateKey, cipher):
         C1, ciphertext_str = cipher
-        if not self.can_decrypt:
-            raise ValueError("No private key available for decryption")
-        else:
-            point = C1.ECmultiply(self.keypair.priv)
-            point_str = f"{point.x}{point.y}"
-            point_hash = hashlib.sha256(point_str.encode()).hexdigest()
-            point_int = int(point_hash, 16) % self.curve.field.p
+        point = C1.ECmultiply(privateKey)
+        point_str = f"{point.x}{point.y}"
+        point_hash = hashlib.sha256(point_str.encode()).hexdigest()
+        point_int = int(point_hash, 16) % self.curve.field.p
 
-            ciphertext = [int(block) for block in ciphertext_str.split()]
-            decrypted_blocks = [((block - point_int + self.curve.field.p) % self.curve.field.p) for block in ciphertext]
+        ciphertext = [int(block) for block in ciphertext_str]
+        decrypted_blocks = [((block - point_int + self.curve.field.p) % self.curve.field.p) for block in ciphertext]
 
-            # Convert decrypted blocks to bytes and then to string
-            decrypted_bytes = b''.join(block.to_bytes(block_size, 'big') for block in decrypted_blocks)
+        # Convert decrypted blocks to bytes
+        decrypted_bytes = b''.join(block.to_bytes(self.block_size, 'big') for block in decrypted_blocks)
 
-            plaintext = decrypted_bytes.decode('utf-8')
+        # Convert to string
+        plaintext = decrypted_bytes.decode('utf-8')
 
-            return plaintext
-            
+        # Remove NULL bytes before the last character
+        if len(plaintext) > 1 and plaintext[-2] == '\x00':
+            plaintext = plaintext[:-2] + plaintext[-1]
+
+        with open('ECC - Encrypt and Decrypt/decryptedText.txt', 'w') as file:
+            file.write(plaintext)
+        return plaintext
+
+class ECDSA:
+    def __init__(self, curve, keypair = None):
+        self.curve = curve
+        self.keypair = keypair
+    def ECDSA_sign(self, privateKey, message):
+            # Convert message to bytes
+            message_bytes = message.encode()
+
+            # Hash message
+            message_hash = hashlib.sha512(message_bytes).hexdigest()
+            message_int = int(message_hash, 16)
+
+            # Generate random number k
+            k = random.getrandbits(20)
+
+            # Calculate r = x1 mod n
+            x1 = self.curve.g.ECmultiply(k).x
+            r = x1 % self.curve.field.n
+
+            # Calculate s = k^-1 (z + r * d) mod n
+            d = privateKey
+            z = message_int
+            k_inv = mod_inverse(k, self.curve.field.n)
+            s = (k_inv * (z + r * d)) % self.curve.field.n
+
+            return r, s
+    def ECDSA_verify(self, publicKey, message, signature):
+            r, s = signature
+
+            # Convert message to bytes
+            message_bytes = message.encode()
+
+            # Hash message
+            message_hash = hashlib.sha512(message_bytes).hexdigest()
+            message_int = int(message_hash, 16)
+
+            # Calculate w = s^-1 mod n
+            s_inv = mod_inverse(s, self.curve.field.n)
+
+            # Calculate u1 = zw mod n and u2 = rw mod n
+            z = message_int
+            u1 = (z * s_inv) % self.curve.field.n
+            u2 = (r * s_inv) % self.curve.field.n
+
+            # Calculate x1 = u1 * G + u2 * Q
+            x1 = self.curve.g.ECmultiply(u1).ECadd_point(publicKey.ECmultiply(u2)).x
+
+            return r == x1 % self.curve.field.n

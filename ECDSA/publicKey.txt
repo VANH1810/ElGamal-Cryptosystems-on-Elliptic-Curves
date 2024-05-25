@@ -1,0 +1,10 @@
+Pcurve: 937151
+Acurve: 872338
+Bcurve: 842444
+Gx: 16213 
+Gy: 331227
+OrderG: 937537
+bits: 20
+block_size: 2
+PublicKeyPoint.x: 295013
+PublicKeyPoint.y: 729855
