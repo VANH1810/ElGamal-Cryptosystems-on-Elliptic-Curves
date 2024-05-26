@@ -229,46 +229,49 @@ class ECDSA:
         self.curve = curve
         self.keypair = keypair
     def ECDSA_sign(self, privateKey, message):
-            # Convert message to bytes
-            message_bytes = message.encode()
+        # Convert message to bytes
+        message_bytes = message.encode()
 
-            # Hash message
-            message_hash = hashlib.sha512(message_bytes).hexdigest()
-            message_int = int(message_hash, 16)
+        # Hash message
+        message_hash = hashlib.sha512(message_bytes).hexdigest()
+        message_int = int(message_hash, 16)
 
-            # Generate random number k
-            k = random.getrandbits(20)
+        # Generate random number k
+        k = random.getrandbits(20)
 
-            # Calculate r = x1 mod n
-            x1 = self.curve.g.ECmultiply(k).x
-            r = x1 % self.curve.field.n
+        # Calculate r = x1 mod n
+        x1 = self.curve.g.ECmultiply(k).x
+        r = x1 % self.curve.field.n
 
-            # Calculate s = k^-1 (z + r * d) mod n
-            d = privateKey
-            z = message_int
-            k_inv = mod_inverse(k, self.curve.field.n)
-            s = (k_inv * (z + r * d)) % self.curve.field.n
-
-            return r, s
+        # Calculate s = k^-1 (z + r * d) mod n
+        d = privateKey
+        z = message_int
+        k_inv = mod_inverse(k, self.curve.field.n)
+        s = (k_inv * (z + r * d)) % self.curve.field.n
+        with open('ECDSA/signature.txt', 'w') as file:
+            file.write(f"r: {r}\n")
+            file.write(f"s: {s}\n")
+        return r, s
+    
     def ECDSA_verify(self, publicKey, message, signature):
-            r, s = signature
+        r, s = signature
 
-            # Convert message to bytes
-            message_bytes = message.encode()
+        # Convert message to bytes
+        message_bytes = message.encode()
 
-            # Hash message
-            message_hash = hashlib.sha512(message_bytes).hexdigest()
-            message_int = int(message_hash, 16)
+        # Hash message
+        message_hash = hashlib.sha512(message_bytes).hexdigest()
+        message_int = int(message_hash, 16)
 
-            # Calculate w = s^-1 mod n
-            s_inv = mod_inverse(s, self.curve.field.n)
+        # Calculate w = s^-1 mod n
+        s_inv = mod_inverse(s, self.curve.field.n)
 
-            # Calculate u1 = zw mod n and u2 = rw mod n
-            z = message_int
-            u1 = (z * s_inv) % self.curve.field.n
-            u2 = (r * s_inv) % self.curve.field.n
+        # Calculate u1 = zw mod n and u2 = rw mod n
+        z = message_int
+        u1 = (z * s_inv) % self.curve.field.n
+        u2 = (r * s_inv) % self.curve.field.n
 
-            # Calculate x1 = u1 * G + u2 * Q
-            x1 = self.curve.g.ECmultiply(u1).ECadd_point(publicKey.ECmultiply(u2)).x
+        # Calculate x1 = u1 * G + u2 * Q
+        x1 = self.curve.g.ECmultiply(u1).ECadd_point(publicKey.ECmultiply(u2)).x
 
-            return r == x1 % self.curve.field.n
+        return r == x1 % self.curve.field.n

@@ -29,14 +29,12 @@ block_size = public_key_values['block_size']
 
 Signature_Scheme = ECC_Class.ECDSA(curve, None)
 
-with open ('ECC - Encrypt and Decrypt/privateKey.txt', 'r') as file:
+with open ('ECDSA/privateKey.txt', 'r') as file:
     privKey = int(file.readline().strip().split(': ')[1])
 
 # Open the file in read mode
-message = "Tran Quoc Viet Anh"
+with open('ECDSA/message.txt', 'r') as file:
+    message = file.read().strip()
+    
 signature = Signature_Scheme.ECDSA_sign(privKey, message)
 print(signature)
-
-# Verify the signature
-if Signature_Scheme.ECDSA_verify(publicPoint, message, signature):
-    print("Signature is valid")
