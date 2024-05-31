@@ -1,5 +1,5 @@
 # ElGamal Cryptosystems on Elliptic Curves
-A Crytosystem redesigned by [Trần Quốc Việt Anh](https://github.com/VANH1810)
+Elliptic Curve Cryptography and Elliptic Curve Digital Signature redesigned by [Trần Quốc Việt Anh](https://github.com/VANH1810)
 
 <div id="readme-top"></div>
 <!-- TABLE OF CONTENTS -->
@@ -35,11 +35,15 @@ A Crytosystem redesigned by [Trần Quốc Việt Anh](https://github.com/VANH18
 <!-- GENAERAL INFORMATION -->
 ## 1. General Information
 
-ElGamal Cryptosystems on Elliptic Curves
+ElGamal Cryptosystems on Elliptic Curves and Elliptic Curve Digital Signature
 
 This is an easy-to-use API implementation of Elgamal Encryption and Decryption using Elliptic Curve Cryptography, implemented purely in Python. 
 
+Moreover, it helps in creating digital signatures and validating signatures.
+
 You can create and use your own Elliptic curve using the [BuildECC](../BuildECC.py)
+
+* Note: The Elliptic curve construction feature is not optimal, it only works with curves on Zp with small p and can run for a long time with large p. If you have an algorithm that helps build highways more optimally, I look forward to your contribution.
 
 ### Built With
 
@@ -48,6 +52,12 @@ You can create and use your own Elliptic curve using the [BuildECC](../BuildECC.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 2. Parameters
+### [ElGamal Cryptosystems on Elliptic Curves](../ECC%20-%20Encrypt%20and%20Decrypt/)
+* The elliptic curve domain parameters used are over Fp associated with a curve secp384r1.
+* The parameters of the curve are written in [PublicKey](../ECC%20-%20Encrypt%20and%20Decrypt/publicKey.txt) or [secp384r1](../secp384r1.py)
+* You can learn about this elliptic curve in the references section
+
+### [Elliptic Curve Digital Signature](../ECDSA/)
 * Elliptic curve I used:  y^2 = x^3 + 872338 * x + 842444
 * Over Zp, p = 937151
 * GenPoint: (16213, 331227)
@@ -76,14 +86,45 @@ This repository currently supports Window.
 
 <!-- USAGE EXAMPLES -->
 ## 4. Usage
-* To Encryption and Decryption
+### [ElGamal Cryptosystems on Elliptic Curves](../ECC%20-%20Encrypt%20and%20Decrypt/)
+#### Encryption
+* Please write down the plaintext you want to encrypt [Plain text](../ECC%20-%20Encrypt%20and%20Decrypt/plainText.txt)
+* To Encryption
   ``` ssh
-   py main.py
+    py Encrypt.py
     ```
+* Then the ciphertext will be written in [Cipher text](../ECC%20-%20Encrypt%20and%20Decrypt/cipherText.txt)
+
+#### Decryption
+* Please write down the cipher text you want to decrypt [Cipher text](../ECC%20-%20Encrypt%20and%20Decrypt/cipherText.txt)
+
+* To Decryption
+  ``` ssh
+    py Decrypt.py
+    ```
+* Then the Decrypted Text will be written in [Decrypted Text](../ECC%20-%20Encrypt%20and%20Decrypt/decryptedText.txt)
+
+### [Elliptic Curve Digital Signature](../ECDSA/)
+#### Sign
+* Please write down the message you want to sign in [Message](../ECDSA/message.txt)
+* To sign
+  ``` ssh
+      py Sign.py
+* Then the signature will be written in [Signature](../ECDSA/signature.txt) 
+
+#### Verify
+* Please write down the message you want to verify in [Message](../ECDSA/message.txt) and the signature in [Signature](../ECDSA/signature.txt)
+* To verify
+  ``` ssh
+      py Verify.py
+  ```
+* If signature is valid or invalid, the message will be printed to the screen
+
+#### Other functions
 * To Build a new Elliptic Curve
   ``` ssh
    py BuildECC.py
-    ```
+  ```
 * To Generate a Prime
   ``` ssh
     py GeneratePrime.py
@@ -119,6 +160,7 @@ My project is released under the [MIT License](LICENSE.md). This means you're fr
 ## 9. References
 * [Stinson Paterson_ Cryptography Theory And Practice - CRC Press (2019)](https://www.taylorfrancis.com/books/mono/10.1201/9781315282497/cryptography-douglas-robert-stinson-maura-paterson)
 * [Elliptic Curve Digital Signature Algorithm](https://learnmeabitcoin.com/technical/cryptography/elliptic-curve/ecdsa/)
+* [SEC 2: Recommended Elliptic Curve Domain Parameters](https://www.secg.org/sec2-v2.pdf)
 * [ElGamal Cryptosystems on Koblitz curve secp256k1](https://github.com/Yash0day/ElgamalEncryption-using-ECC)
 * [Tinyec Python Libarary](https://pypi.org/project/tinyec/)
 
@@ -127,9 +169,8 @@ My project is released under the [MIT License](LICENSE.md). This means you're fr
 <!-- CONTACT -->
 ## 10. Contact
 
-Tran Quoc Viet Anh - [quocvietanh.tran](https://www.facebook.com/quocvietanh.tran/) - tqvabk24@gmail.com
-
-My github: [https://github.com/VANH1810](https://github.com/VANH1810)
-
+* My facebook: Tran Quoc Viet Anh - [quocvietanh.tran](https://www.facebook.com/quocvietanh.tran/) 
+* Email: tqvabk24@gmail.com
+*My github: [https://github.com/VANH1810](https://github.com/VANH1810)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

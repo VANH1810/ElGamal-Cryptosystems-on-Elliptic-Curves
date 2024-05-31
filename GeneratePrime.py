@@ -62,7 +62,7 @@ def generate_prime(bits):
             if Miller_Rabin_Prime_Check(p):
                 return p
 
-bit_n = 20
+bit_n = 256
 p = generate_prime(bit_n)
 print(p)
 

@@ -2,13 +2,13 @@
     Replace all Arcade Adventure
 -->
 
-# Contributing to Arcade Adventure
+# Contributing to ElGamal Cryptosystems on Elliptic Curves
 
 We welcome contributions to Arcade Adventure! By contributing to this project, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## How to Contribute
 
-1. Fork the repository and create your branch from `master`.
+1. Fork the repository and create your branch from `main`.
 2. If you've added code that should be tested, add tests.
 3. If you've changed APIs, update the documentation.
 4. Ensure the test suite passes.

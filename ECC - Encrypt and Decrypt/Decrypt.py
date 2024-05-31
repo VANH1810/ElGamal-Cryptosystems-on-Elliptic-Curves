@@ -21,6 +21,8 @@ N = public_key_values['OrderG']
 
 field = ECC_Class.SubGroup(Pcurve, GPoint, N, 1)
 curve = ECC_Class.Elliptic_Curves(Acurve, Bcurve, field, "Vanh_Curve")
+GenPoint = ECC_Class.Point(curve, GPoint[0], GPoint[1])
+
 publicPoint = ECC_Class.Point(curve, public_key_values['PublicKeyPoint.x'], public_key_values['PublicKeyPoint.y'])
 bits = public_key_values['bits']
 block_size = public_key_values['block_size']
@@ -50,4 +52,4 @@ with open('ECC - Encrypt and Decrypt/cipherText.txt', 'r') as file:
 # Decrypt the cipher
 cipher = (C1, ciphertext_str)
 plaintext = Crytography.decrypt(privKey, cipher)
-print(plaintext)
+#print(plaintext)
